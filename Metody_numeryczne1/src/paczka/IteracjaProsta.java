@@ -3,7 +3,7 @@ package paczka;
 public class IteracjaProsta {
 	private double iloscIteracji;
 	private double przyblizenie;
-	private double zakres0 = 0.0, zakres1;
+	private double x = 0.0, y;
 	private double aktualnePrzyblizenie = 1.0;
 	private boolean loud = true;
 	public double wynik;
@@ -15,13 +15,24 @@ public class IteracjaProsta {
 	 * @param iloscIteracji
 	 * @param loud
 	 */
-	public IteracjaProsta(double zakres0, double zakres1, double przyblizenie,
-			double iloscIteracji, boolean loud) {
+	public IteracjaProsta(double x, double przyblizenie, double iloscIteracji,
+			boolean loud) {
 		super();
-		this.zakres0 = zakres0;
-		this.zakres1 = zakres1;
+		this.x = x;
 		this.przyblizenie = przyblizenie;
 		this.iloscIteracji = iloscIteracji;
+		int i = 0;
+		Wzor wzor = new Wzor(loud);
+		do {
+			y = wzor.Oblicz(x);
+			aktualnePrzyblizenie = Math.abs(x - y);
+			if (!loud) {
+				System.out.println("Po " + i + " iteracji \n x= " + x
+						+ " f(x) = " + y);
+			}
+			x = y;
+			i++;
+		} while (aktualnePrzyblizenie >= przyblizenie && i < iloscIteracji);
+		wynik = x;
 	}
-
 }

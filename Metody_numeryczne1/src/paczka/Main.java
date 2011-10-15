@@ -31,29 +31,32 @@ public class Main {
 		warunki[1] = 2;
 		BufferedReader klawa = new BufferedReader(new InputStreamReader(
 				System.in));
-		while (warunki[0] >= warunki[1]) {
-			System.out.println("Podaj początek przedziału:");
-			warunki[0] = Double.parseDouble((klawa.readLine()));
-			System.out.println("Podaj koniec przedziału: ");
-			warunki[1] = Double.parseDouble((klawa.readLine()));
-			if (metoda == 1) {
-				System.out
-						.println("wybierz sposób oblicznia: \n 1 - metoda iteracyjna (min epsilon = 0.006)* \n 2 - metoda rekurencyjna(min epsilon = 0.006)*\n *nawiększa precyzja znaleziona podczas pisania programu");
-				warunki[3] = Double.parseDouble((klawa.readLine()));
-				System.out.println("Podaj epsilon: ");
-				warunki[2] = Double.parseDouble((klawa.readLine()));
-			}
-			if (metoda == 2) {
-				System.out.println("Podaj przyblizenie: ");
-				warunki[2] = Double.parseDouble((klawa.readLine()));
-				System.out.println("Podaj ilość iteracji:");
-				warunki[3] = Double.parseDouble((klawa.readLine()));
-			}
 
-			if (warunki[0] >= warunki[1]) {
-				System.out.println("Błąd");
+		if (metoda == 1) {
+			while (warunki[0] >= warunki[1]) {
+				System.out.println("Podaj początek przedziału:");
+				warunki[0] = Double.parseDouble((klawa.readLine()));
+				System.out.println("Podaj koniec przedziału: ");
+				warunki[1] = Double.parseDouble((klawa.readLine()));
+				if (warunki[0] >= warunki[1]) {
+					System.out.println("Błąd");
+				}
 			}
+			System.out
+					.println("wybierz sposób oblicznia: \n 1 - metoda iteracyjna (min epsilon = 0.006)* \n 2 - metoda rekurencyjna(min epsilon = 0.006)*\n *nawiększa precyzja znaleziona podczas pisania programu");
+			warunki[3] = Double.parseDouble((klawa.readLine()));
+			System.out.println("Podaj epsilon: ");
+			warunki[2] = Double.parseDouble((klawa.readLine()));
 		}
+		if (metoda == 2) {
+			System.out.println("Podaj x początkowy: ");
+			warunki[0] = Double.parseDouble((klawa.readLine()));
+			System.out.println("Podaj przyblizenie: ");
+			warunki[1] = Double.parseDouble((klawa.readLine()));
+			System.out.println("Podaj ilość iteracji:");
+			warunki[2] = Double.parseDouble((klawa.readLine()));
+		}
+
 		return warunki;
 	}
 
@@ -93,8 +96,9 @@ public class Main {
 			case 2:
 				warunki = pobierzWarunki(2);
 				IteracjaProsta iterProsta = new IteracjaProsta(warunki[0],
-						warunki[1], warunki[2], warunki[4], loud);
+						warunki[1], warunki[2], loud);
 				System.out.println("Wynik końcowy = " + iterProsta.wynik);
+				break;
 			case 6:
 				menu = true;
 				break;

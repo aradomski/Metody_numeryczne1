@@ -14,13 +14,29 @@ import java.io.InputStreamReader;
  */
 
 public class Main {
-	public static boolean quiet;
+	public static boolean loud = true;
 
 	static void drukujMenu() {
 		System.out.println("Wybierz opcje");
 		System.out.println("1 - drukuj ponownie menu");
 		System.out.println("2 - oblicz równanie metodą połowienia przedzałów");
 		System.out.println("6 - zakończ");
+	}
+
+	static int[] pobierzPrzedzial() throws NumberFormatException, IOException {
+		int[] przedzial = { -3, 3 }; // TODO potem zmienic -3 na 4
+		BufferedReader klawa = new BufferedReader(new InputStreamReader(
+				System.in));
+		// while (przedzial[0] > przedzial[1]) {
+		// System.out.println("Podaj początek przedziału:");
+		// przedzial[0] = Integer.parseInt(klawa.readLine());
+		// System.out.println("Podaj koniec przedziału: ");
+		// przedzial[1] = Integer.parseInt(klawa.readLine());
+		// if (przedzial[0] > przedzial[1]) {
+		// System.out.println("Błąd");
+		// }
+		// }
+		return przedzial;
 	}
 
 	/**
@@ -30,27 +46,30 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		for (String string : args) {
-			if (string.equals("-q") || string.equals("--quiet")) {
-				quiet = true;
+			if (string.equals("-l") || string.equals("--loud")) {
+				loud = false;
 			}
 		}
 		boolean menu = false;
 		int option = 1;
+		int[] zakres = new int[2];
 		BufferedReader klaw = new BufferedReader(new InputStreamReader(
 				System.in));
 		do {
 			drukujMenu();
 			option = Integer.parseInt(klaw.readLine());
 
-			if (quiet) {
-				System.out.println(option);
+			if (!loud) {
+				System.out.println("option =" + option);
 			}
 			switch (option) {
 			case 1:
 				drukujMenu();
 				break;
 			case 2:
-				System.out.println("pomidorek");
+				zakres = pobierzPrzedzial();
+				PoloweniePrzedzialow polo = new PoloweniePrzedzialow(zakres[0],
+						zakres[1], loud);
 				break;
 			case 6:
 				menu = true;

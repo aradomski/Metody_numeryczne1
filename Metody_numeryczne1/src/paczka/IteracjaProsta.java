@@ -22,17 +22,18 @@ public class IteracjaProsta {
 		this.przyblizenie = przyblizenie;
 		this.iloscIteracji = iloscIteracji;
 		int i = 0;
-		Wzor wzor = new Wzor(loud);
+		Wzor wzor = new Wzor(this.loud);
 		do {
 			y = wzor.Oblicz(x);
-			aktualnePrzyblizenie = Math.abs(x - y);
+			aktualnePrzyblizenie = Math.abs(this.x - y);
 			if (!loud) {
-				System.out.println("Po " + i + " iteracji \n x= " + x
+				System.out.println("Po " + i + " iteracji \n x= " + this.x
 						+ " f(x) = " + y);
 			}
-			x = y;
+			this.x = y;
 			i++;
-		} while (aktualnePrzyblizenie >= przyblizenie && i < iloscIteracji);
+		} while (aktualnePrzyblizenie >= this.przyblizenie
+				&& i < this.iloscIteracji);
 		wynik = x;
 	}
 }

@@ -18,13 +18,14 @@ public class Main {
 
 	static void drukujMenu() {
 		System.out.println("Wybierz opcje");
-		System.out.println("1 - drukuj ponownie menu");
-		System.out.println("2 - oblicz równanie metodą połowienia przedzałów");
+		System.out.println("0 - drukuj ponownie menu");
+		System.out.println("1 - oblicz równanie metodą połowienia przedzałów");
 		System.out.println("6 - zakończ");
 	}
 
-	static double[] pobierzWarunki() throws NumberFormatException, IOException {
-		double[] warunki = new double[3];
+	static double[] pobierzWarunki(int metoda) throws NumberFormatException,
+			IOException {
+		double[] warunki = new double[4];
 		warunki[0] = 4;// TODO potem zmienic -2 na 4
 		warunki[1] = 2;
 		BufferedReader klawa = new BufferedReader(new InputStreamReader(
@@ -34,8 +35,13 @@ public class Main {
 			warunki[0] = Double.parseDouble((klawa.readLine()));
 			System.out.println("Podaj koniec przedziału: ");
 			warunki[1] = Double.parseDouble((klawa.readLine()));
-			System.out.println("Podaj precyzje zaookrąglenia: ");
-			warunki[2] = Double.parseDouble((klawa.readLine()));
+			if (metoda == 1) {
+				System.out
+						.println("wybierz sposób oblicznia: \n 1 - metoda iteracyjna (min epsilon = 0.006) \n 2 - metoda rekurencyjna(min epsilon = 0.006) (daje dokładniejszy wynik)");
+				warunki[3] = Double.parseDouble((klawa.readLine()));
+				System.out.println("Podaj epsilon");
+				warunki[2] = Double.parseDouble((klawa.readLine()));
+			}
 			if (warunki[0] >= warunki[1]) {
 				System.out.println("Błąd");
 			}
@@ -56,7 +62,7 @@ public class Main {
 		}
 		boolean menu = false;
 		int option = 1;
-		double[] warunki = new double[3];
+		double[] warunki = new double[4];
 		BufferedReader klaw = new BufferedReader(new InputStreamReader(
 				System.in));
 		do {
@@ -67,14 +73,14 @@ public class Main {
 				System.out.println("option =" + option);
 			}
 			switch (option) {
-			case 1:
+			case 0:
 				drukujMenu();
 				break;
-			case 2:
-				warunki = pobierzWarunki();
+			case 1:
+				warunki = pobierzWarunki(1);
 				PoloweniePrzedzialow polo = new PoloweniePrzedzialow(
-						warunki[0], warunki[1], warunki[2], loud);
-				System.out.println(polo.wynik);
+						warunki[0], warunki[1], warunki[2], warunki[3], loud);
+				System.out.println("Wynik końcowy = " + polo.wynik);
 				break;
 			case 6:
 				menu = true;

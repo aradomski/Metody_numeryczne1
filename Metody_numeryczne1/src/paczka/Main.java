@@ -19,7 +19,8 @@ public class Main {
 	static void drukujMenu() {
 		System.out.println("Wybierz opcje");
 		System.out.println("0 - drukuj ponownie menu");
-		System.out.println("1 - oblicz równanie metodą połowienia przedzałów");
+		System.out.println("1 - oblicz równanie metodą Połowienia Przedzałów");
+		System.out.println("2 - oblicz równanie metodą Prostej Iteracji");
 		System.out.println("6 - zakończ");
 	}
 
@@ -37,11 +38,18 @@ public class Main {
 			warunki[1] = Double.parseDouble((klawa.readLine()));
 			if (metoda == 1) {
 				System.out
-						.println("wybierz sposób oblicznia: \n 1 - metoda iteracyjna (min epsilon = 0.006) \n 2 - metoda rekurencyjna(min epsilon = 0.006) (daje dokładniejszy wynik)");
+						.println("wybierz sposób oblicznia: \n 1 - metoda iteracyjna (min epsilon = 0.006)* \n 2 - metoda rekurencyjna(min epsilon = 0.006)*\n *nawiększa precyzja znaleziona podczas pisania programu");
 				warunki[3] = Double.parseDouble((klawa.readLine()));
-				System.out.println("Podaj epsilon");
+				System.out.println("Podaj epsilon: ");
 				warunki[2] = Double.parseDouble((klawa.readLine()));
 			}
+			if (metoda == 2) {
+				System.out.println("Podaj przyblizenie: ");
+				warunki[2] = Double.parseDouble((klawa.readLine()));
+				System.out.println("Podaj ilość iteracji:");
+				warunki[3] = Double.parseDouble((klawa.readLine()));
+			}
+
 			if (warunki[0] >= warunki[1]) {
 				System.out.println("Błąd");
 			}
@@ -82,6 +90,11 @@ public class Main {
 						warunki[0], warunki[1], warunki[2], warunki[3], loud);
 				System.out.println("Wynik końcowy = " + polo.wynik);
 				break;
+			case 2:
+				warunki = pobierzWarunki(2);
+				IteracjaProsta iterProsta = new IteracjaProsta(warunki[0],
+						warunki[1], warunki[2], warunki[4], loud);
+				System.out.println("Wynik końcowy = " + iterProsta.wynik);
 			case 6:
 				menu = true;
 				break;

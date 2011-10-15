@@ -12,9 +12,9 @@ public class Wzor {
 	public double Oblicz(double x) {
 		this.x = x;
 		wynik = (2 * this.x) - Math.tan(this.x);
-//		if (!this.loud) {
-//			System.out.println("wynik = " + wynik);
-//		}
+		if (!this.loud) {
+			System.out.println("wynik = " + wynik);
+		}
 		return wynik;
 	}
 

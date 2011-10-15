@@ -20,23 +20,29 @@ public class PoloweniePrzedzialow {
 			System.out.println("middle =" + middle);
 		}
 		result = wzor.Oblicz(middle);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		if (metoda == 1) {
 			// wersja petlowa precyzja do 0.006
 			if (wzor.Oblicz(zakres0) * wzor.Oblicz(zakres1) < 0) {
 				result = zakres0;
+
+				if (!loud) {
+					System.out.println("result = " + result);
+				}
 				while ((zakres1 - zakres0) >= epsilon) {
 					result = (zakres1 + zakres0) / 2.0;
+					if (!loud) {
+						System.out.println("result = " + result);
+					}
 					if (wzor.Oblicz(zakres0) * wzor.Oblicz(result) < 0) {
 						zakres1 = result;
+						if (!loud) {
+							System.out.println("result = " + result);
+						}
 					} else if (wzor.Oblicz(result) * wzor.Oblicz(zakres1) < 0) {
 						zakres0 = result;
+						if (!loud) {
+							System.out.println("result = " + result);
+						}
 					} else
 						break;
 				}

@@ -1,22 +1,19 @@
 package paczka;
 
-import java.math.BigDecimal;
-
 public class Wzor {
-	public BigDecimal wynik = null;
-	private BigDecimal x = null;
+	public double wynik;
+	private double x;
 
 	/**
 	 * @param x
 	 */
-	public Wzor(BigDecimal x) {
+	public Wzor(double x) {
 		super();
 		this.x = x;
-		
-		wynik = (this.x.multiply(new BigDecimal(2)).subtract(new BigDecimal(
-				Math.tan(this.x.doubleValue()))));
-		
-		System.out.println(wynik);
+
+		wynik = (2 * this.x) - Math.tan(this.x);
+
+		System.out.println("wynik = " + wynik);
 	}
 
 	/**

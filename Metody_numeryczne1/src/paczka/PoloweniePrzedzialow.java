@@ -1,35 +1,30 @@
 package paczka;
 
-import java.math.BigDecimal;
-
 public class PoloweniePrzedzialow {
-	BigDecimal zakres0 = null;
-	BigDecimal zakres1 = null;
+	double zakres0;
+	double zakres1;
 	int zaookraglenie = 10;
 	boolean loud = true;
-	public BigDecimal wynik;
+	public double wynik;
 
-	private BigDecimal Szukaj(BigDecimal zakres0, BigDecimal zakres1,
-			int zaookraglenie, boolean loud) {
-		BigDecimal result = null;
-		BigDecimal middle = (zakres0.add(zakres1)).divide(new BigDecimal(2),
-				zaookraglenie, BigDecimal.ROUND_HALF_UP);
-		BigDecimal middleLeft = (zakres0.add(middle)).divide(new BigDecimal(2),
-				zaookraglenie, BigDecimal.ROUND_HALF_UP);
-		BigDecimal middleRight = (middle.add(zakres1)).divide(
-				new BigDecimal(2), zaookraglenie, BigDecimal.ROUND_HALF_UP);
+	private double Szukaj(double zakres0, double zakres1, int zaookraglenie,
+			boolean loud) {
+		double result;
+		double middle = (zakres0 + zakres1) / 2;
+		double middleLeft = (zakres0 + middle) / 2;
+		double middleRight = (middle + zakres1) / 2;
 		if (!loud) {
-			System.out.println("middle =" + middle.toString());
+			System.out.println("middle =" + middle);
 		}
 		Wzor wzor = new Wzor(middle);
 		result = wzor.wynik;
-		if (result.equals(0)) {
+		if (result == 0) {
 			return result;
 		} else {
-			if ((middleLeft.signum()) == 1) {
+			if (middleLeft > 1) {
 				result = Szukaj(zakres0, middle, zaookraglenie, loud);
 			}
-			if ((middleRight.signum()) == 1) {
+			if (middleRight > 1) {
 				result = Szukaj(middle, zakres1, zaookraglenie, loud);
 			} else {
 				return result;
@@ -42,12 +37,12 @@ public class PoloweniePrzedzialow {
 	 * @param zakres0
 	 * @param zakres1
 	 */
-	public PoloweniePrzedzialow(BigDecimal zakres0, BigDecimal zakres1,
-			BigDecimal zaookraglenie, boolean loud) {
+	public PoloweniePrzedzialow(double zakres0, double zakres1,
+			double zaookraglenie, boolean loud) {
 		super();
 		this.zakres0 = zakres0;
 		this.zakres1 = zakres1;
-		this.zaookraglenie = Integer.parseInt(zaookraglenie.toString());
+		this.zaookraglenie = (int) zaookraglenie;
 		this.loud = loud;
 
 		if (!loud) {

@@ -7,10 +7,11 @@ public class PoloweniePrzedzialow {
 	BigDecimal zakres1 = null;
 	int zaookraglenie = 10;
 	boolean loud = true;
+	public BigDecimal wynik;
 
 	private BigDecimal Szukaj(BigDecimal zakres0, BigDecimal zakres1,
 			int zaookraglenie, boolean loud) {
-		BigDecimal wynik = null;
+		BigDecimal result = null;
 		BigDecimal middle = (zakres0.add(zakres1)).divide(new BigDecimal(2),
 				zaookraglenie, BigDecimal.ROUND_HALF_UP);
 		BigDecimal middleLeft = (zakres0.add(middle)).divide(new BigDecimal(2),
@@ -21,17 +22,20 @@ public class PoloweniePrzedzialow {
 			System.out.println("middle =" + middle.toString());
 		}
 		Wzor wzor = new Wzor(middle);
-		wynik = wzor.Oblicz();
-		if (wynik.equals(0)) {
-			return wynik;
+		result = wzor.wynik;
+		if (result.equals(0)) {
+			return result;
 		} else {
 			if ((middleLeft.signum()) == 1) {
-				wynik = Szukaj(zakres0, middle, zaookraglenie, loud);
+				result = Szukaj(zakres0, middle, zaookraglenie, loud);
 			}
-
+			if ((middleRight.signum()) == 1) {
+				result = Szukaj(middle, zakres1, zaookraglenie, loud);
+			} else {
+				return result;
+			}
+			return result;
 		}
-
-		return wynik;
 	}
 
 	/**
@@ -45,7 +49,6 @@ public class PoloweniePrzedzialow {
 		this.zakres1 = zakres1;
 		this.zaookraglenie = Integer.parseInt(zaookraglenie.toString());
 		this.loud = loud;
-		BigDecimal wynik;
 
 		if (!loud) {
 			System.out.println("zakres0 = " + this.zakres0);
@@ -57,6 +60,7 @@ public class PoloweniePrzedzialow {
 		if (!loud) {
 			System.out.println("zaookraglenie  =" + this.zaookraglenie);
 		}
-		Szukaj(this.zakres0, this.zakres1, this.zaookraglenie, this.loud);
+		wynik = Szukaj(this.zakres0, this.zakres1, this.zaookraglenie,
+				this.loud);
 	}
 }

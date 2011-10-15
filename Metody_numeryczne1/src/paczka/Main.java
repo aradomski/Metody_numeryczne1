@@ -78,6 +78,7 @@ public class Main {
 				warunki = pobierzWarunki();
 				PoloweniePrzedzialow polo = new PoloweniePrzedzialow(
 						warunki[0], warunki[1], warunki[2], loud);
+				System.out.println(polo.wynik);
 				break;
 			case 6:
 				menu = true;

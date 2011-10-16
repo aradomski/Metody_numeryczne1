@@ -21,18 +21,19 @@ public class Main {
 		System.out.println("0 - drukuj ponownie menu");
 		System.out.println("1 - oblicz równanie metodą Połowienia Przedzałów");
 		System.out.println("2 - oblicz równanie metodą Prostej Iteracji");
+		System.out.println("3 - oblicz równanie metodą Siecznych");
 		System.out.println("6 - zakończ");
 	}
 
 	static double[] pobierzWarunki(int metoda) throws NumberFormatException,
 			IOException {
-		double[] warunki = new double[4];
+		double[] warunki = new double[5];
 		warunki[0] = 4;// TODO potem zmienic -2 na 4
 		warunki[1] = 2;
 		BufferedReader klawa = new BufferedReader(new InputStreamReader(
 				System.in));
 
-		if (metoda == 1) {
+		if (metoda == 1 || metoda == 3) {
 			while (warunki[0] >= warunki[1]) {
 				System.out.println("Podaj początek przedziału:");
 				warunki[0] = Double.parseDouble((klawa.readLine()));
@@ -42,6 +43,8 @@ public class Main {
 					System.out.println("Błąd");
 				}
 			}
+		}
+		if (metoda == 1) {
 			System.out
 					.println("wybierz sposób oblicznia: \n 1 - metoda iteracyjna (min epsilon = 0.006)* \n 2 - metoda rekurencyjna(min epsilon = 0.006)*\n *nawiększa precyzja znaleziona podczas pisania programu");
 			warunki[3] = Double.parseDouble((klawa.readLine()));
@@ -53,10 +56,11 @@ public class Main {
 			warunki[0] = Double.parseDouble((klawa.readLine()));
 			System.out.println("Podaj przyblizenie: ");
 			warunki[1] = Double.parseDouble((klawa.readLine()));
+		}
+		if (metoda == 2 || metoda == 3) {
 			System.out.println("Podaj ilość iteracji:");
 			warunki[2] = Double.parseDouble((klawa.readLine()));
 		}
-
 		return warunki;
 	}
 
@@ -73,7 +77,7 @@ public class Main {
 		}
 		boolean menu = false;
 		int option = 1;
-		double[] warunki = new double[4];
+		double[] warunki = new double[5];
 		BufferedReader klaw = new BufferedReader(new InputStreamReader(
 				System.in));
 		do {
@@ -98,6 +102,12 @@ public class Main {
 				IteracjaProsta iterProsta = new IteracjaProsta(warunki[0],
 						warunki[1], warunki[2], loud);
 				System.out.println("Wynik końcowy = " + iterProsta.wynik);
+				break;
+			case 3:
+				warunki = pobierzWarunki(3);
+				Sieczne sieczne = new Sieczne(warunki[0], warunki[1],
+						warunki[2], loud);
+				System.out.println("wynik końcowy = " + sieczne.wynik);
 				break;
 			case 6:
 				menu = true;

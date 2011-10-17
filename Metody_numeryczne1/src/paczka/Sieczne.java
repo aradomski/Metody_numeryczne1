@@ -32,7 +32,7 @@ public class Sieczne {
 				System.out.println("f1 = " + f1 + "f2 = " + f2);
 			}
 			if (Math.abs(f1 - f2) < eps0) {
-				if (!loud) {
+				if (!this.loud) {
 					System.out.println("złe punkty? = " + Math.abs(f1 - f2));
 				}
 				System.out.println("Złe punkty startowe\n");

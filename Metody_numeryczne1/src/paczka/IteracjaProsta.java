@@ -24,9 +24,9 @@ public class IteracjaProsta {
 		int i = 0;
 		Wzor wzor = new Wzor(this.loud);
 		do {
-			y = wzor.Oblicz(x);
+			y = wzor.Oblicz(this.x);
 			aktualnePrzyblizenie = Math.abs(this.x - y);
-			if (!loud) {
+			if (!this.loud) {
 				System.out.println("Po " + i + " iteracji \n x= " + this.x
 						+ " f(x) = " + y);
 			}
@@ -34,6 +34,6 @@ public class IteracjaProsta {
 			i++;
 		} while (aktualnePrzyblizenie >= this.przyblizenie
 				&& i < this.iloscIteracji);
-		wynik = x;
+		wynik = this.x;
 	}
 }

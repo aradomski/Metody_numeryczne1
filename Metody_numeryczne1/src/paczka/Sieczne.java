@@ -27,13 +27,17 @@ public class Sieczne {
 		double x0;
 		double f0, f1 = wzor.Oblicz(this.x1), f2 = wzor.Oblicz(this.x2);
 		while (this.iloscIteracji > 0 && Math.abs(this.x1 - this.x2) > epsX) {
-			if (Math.abs(f1 - f2) > eps0) {
+			if (!loud) {
+				System.out.println("x1 = " + this.x1 + " x2 = " + this.x2);
+				System.out.println("f1 = " + f1 + "f2 = " + f2);
+			}
+			if (Math.abs(f1 - f2) < eps0) {
 				if (!loud) {
 					System.out.println("złe punkty? = " + Math.abs(f1 - f2));
 				}
 				System.out.println("Złe punkty startowe\n");
 				this.iloscIteracji = 0;
-				// break;
+				break;
 			}
 			x0 = this.x1 - f1 * (this.x1 - this.x2) / (f1 - f2);
 			f0 = wzor.Oblicz(x0);
@@ -50,9 +54,9 @@ public class Sieczne {
 		}
 		if (iloscIteracji > 0) {
 			if (!this.loud) {
-				System.out.println("wynik? = " + x1);
+				System.out.println("wynik = " + this.x1);
 			}
 		}
-		wynik = x1;
+		wynik = this.x1;
 	}
 }

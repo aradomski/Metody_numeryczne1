@@ -27,7 +27,7 @@ public class Newton {
 		Wzor wzor = new Wzor(loud);
 		double x1 = this.x0 - 1;
 		double f0 = wzor.Oblicz(x0), f1;
-		int i = (int) iloscIteracji;
+		int i = (int) this.iloscIteracji;
 		while (i > 0 && Math.abs(x1 - this.x0) > epsX && Math.abs(f0) > eps0) {
 			f1 = Pochodna(this.x0);
 			if (Math.abs(f1) < eps0) {
@@ -42,8 +42,10 @@ public class Newton {
 			if (i == 0) {
 				System.out.println("Przekroczono limit obiegów");
 			}
-			wynik = this.x0;
 		}
-
+		if (!this.loud) {
+			System.out.println("wynik =" + wynik);
+		}
+		wynik = this.x0;
 	}
 }

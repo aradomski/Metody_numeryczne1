@@ -113,8 +113,14 @@ public class Main {
 				System.out.println("wynik końcowy = " + sieczne.wynik);
 				break;
 			case 4:
+
 				warunki = pobierzWarunki(4);
 				Newton newton = new Newton(warunki[0], warunki[2], loud);
+				if (newton.wynik == -1000) {
+					System.out.println("Podaj jeszcze raz punkt startowy");
+					warunki = pobierzWarunki(4);
+					newton = new Newton(warunki[0], warunki[2], loud);
+				}
 				System.out.println("wynik końcowy = " + newton.wynik);
 				break;
 			case 6:

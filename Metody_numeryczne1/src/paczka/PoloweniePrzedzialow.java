@@ -1,13 +1,12 @@
 package paczka;
 
 public class PoloweniePrzedzialow {
-	double zakres0;
-	double zakres1;
-	int zaookraglenie = 10;
-	boolean loud = true;
+	private double zakres0;
+	private double zakres1;
+	private boolean loud = true;
 	public double wynik;
-	double epsilon;
-	double metoda;
+	private double epsilon;
+	private double metoda;
 
 	private double Szukaj(double zakres0, double zakres1, double epsilon,
 			double metoda, boolean loud) {
@@ -76,6 +75,9 @@ public class PoloweniePrzedzialow {
 	/**
 	 * @param zakres0
 	 * @param zakres1
+	 * @param epsilon
+	 * @param metoda
+	 * @param loud
 	 */
 	public PoloweniePrzedzialow(double zakres0, double zakres1, double epsilon,
 			double metoda, boolean loud) {

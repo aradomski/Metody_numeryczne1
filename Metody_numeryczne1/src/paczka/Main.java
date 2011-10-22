@@ -22,6 +22,7 @@ public class Main {
 		System.out.println("1 - oblicz równanie metodą Połowienia Przedzałów");
 		System.out.println("2 - oblicz równanie metodą Prostej Iteracji");
 		System.out.println("3 - oblicz równanie metodą Siecznych");
+		System.out.println("4 - oblicz równanie metodą Newtona");
 		System.out.println("6 - zakończ");
 	}
 
@@ -51,13 +52,15 @@ public class Main {
 			System.out.println("Podaj epsilon: ");
 			warunki[2] = Double.parseDouble((klawa.readLine()));
 		}
-		if (metoda == 2) {
+		if (metoda == 2 || metoda == 4) {
 			System.out.println("Podaj x początkowy: ");
 			warunki[0] = Double.parseDouble((klawa.readLine()));
+		}
+		if (metoda == 2) {
 			System.out.println("Podaj przyblizenie: ");
 			warunki[1] = Double.parseDouble((klawa.readLine()));
 		}
-		if (metoda == 2 || metoda == 3) {
+		if (metoda == 2 || metoda == 3 || metoda == 4) {
 			System.out.println("Podaj ilość iteracji:");
 			warunki[2] = Double.parseDouble((klawa.readLine()));
 		}
@@ -108,6 +111,11 @@ public class Main {
 				Sieczne sieczne = new Sieczne(warunki[0], warunki[1],
 						warunki[2], loud);
 				System.out.println("wynik końcowy = " + sieczne.wynik);
+				break;
+			case 4:
+				warunki = pobierzWarunki(4);
+				Newton newton = new Newton(warunki[0], warunki[2], loud);
+				System.out.println("wynik końcowy = " + newton.wynik);
 				break;
 			case 6:
 				menu = true;

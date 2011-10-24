@@ -1,39 +1,36 @@
 package paczka;
 
 public class IteracjaProsta {
-	private double iloscIteracji;
-	private double przyblizenie;
-	private double x = 0.0, y;
-	private double aktualnePrzyblizenie = 1.0;
+	private int iloscIteracji;
+	private double b1 = 5.0;
+	private double x0 = 0.0, f0;
+	private double eps0 = 0.0001;
 	private boolean loud = true;
 	public double wynik;
 
 	/**
-	 * @param zakres0
-	 * @param zakres1
-	 * @param przyblizenie
+	 * @param x0
 	 * @param iloscIteracji
 	 * @param loud
 	 */
-	public IteracjaProsta(double x, double przyblizenie, double iloscIteracji,
-			boolean loud) {
+	public IteracjaProsta(double x0, double iloscIteracji, boolean loud) {
 		super();
-		this.x = x;
-		this.przyblizenie = przyblizenie;
-		this.iloscIteracji = iloscIteracji;
-		int i = 0;
+		this.x0 = x0;
+		this.iloscIteracji = (int) iloscIteracji;
+		this.loud = loud;
+		int i = (int) this.iloscIteracji;
 		Wzor wzor = new Wzor(this.loud);
+		// this.x0 = Math.tan(this.x0) / 2;
 		do {
-			y = wzor.Oblicz(this.x);
-			aktualnePrzyblizenie = Math.abs(this.x - y);
+			f0 = wzor.Oblicz(this.x0);
+			b1 = Math.abs(this.x0 - f0);
 			if (!this.loud) {
-				System.out.println("Po " + i + " iteracji \n x= " + this.x
-						+ " f(x) = " + y);
+				System.out.println("Po " + (this.iloscIteracji - i)
+						+ " iteracji \n x= " + this.x0 + " f(x) = " + f0);
 			}
-			this.x = y;
-			i++;
-		} while (aktualnePrzyblizenie >= this.przyblizenie
-				&& i < this.iloscIteracji);
-		wynik = this.x;
+			this.x0 = f0;
+			i--;
+		} while (b1 >= eps0 && i > 0);
+		wynik = this.x0;
 	}
 }

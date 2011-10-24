@@ -1,6 +1,6 @@
 Adam Radomski 186407
 Metody Obliczeniowe
-Napisać program realizujący różne metody znajdowania przybliżonego rozwiązania równania 2x-tanx = 0 (Chodzi o rozwiązanie x!=0)
+Napisać program realizujący różne metody znajdowania przybliżonego rozwiązania równania 2x-tan(x) = 0 (Chodzi o rozwiązanie x!=0)
   Należy rozważać następujące algorytmy:
 1) metodę prostych iteracji
 2) metodę Newtona

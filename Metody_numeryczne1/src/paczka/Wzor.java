@@ -18,15 +18,13 @@ public class Wzor {
 		return wynik;
 	}
 
+	/**
+	 * @param loud
+	 */
+
 	public Wzor(boolean loud) {
 		super();
 		this.loud = loud;
 
 	}
-
-	/**
-	 * @param wynik
-	 * @param x
-	 * @return
-	 */
 }

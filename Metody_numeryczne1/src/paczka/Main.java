@@ -56,10 +56,10 @@ public class Main {
 			System.out.println("Podaj x początkowy: ");
 			warunki[0] = Double.parseDouble((klawa.readLine()));
 		}
-		if (metoda == 2) {
-			System.out.println("Podaj przyblizenie: ");
-			warunki[1] = Double.parseDouble((klawa.readLine()));
-		}
+		/*
+		 * if (metoda == 2) { System.out.println("Podaj przyblizenie: ");
+		 * warunki[1] = Double.parseDouble((klawa.readLine())); }
+		 */
 		if (metoda == 2 || metoda == 3 || metoda == 4) {
 			System.out.println("Podaj ilość iteracji:");
 			warunki[2] = Double.parseDouble((klawa.readLine()));
@@ -103,7 +103,7 @@ public class Main {
 			case 2:
 				warunki = pobierzWarunki(2);
 				IteracjaProsta iterProsta = new IteracjaProsta(warunki[0],
-						warunki[1], warunki[2], loud);
+						warunki[2], loud);
 				System.out.println("Wynik końcowy = " + iterProsta.wynik);
 				break;
 			case 3:

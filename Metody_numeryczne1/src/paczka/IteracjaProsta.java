@@ -4,7 +4,7 @@ public class IteracjaProsta {
 	private int iloscIteracji;
 	private double b1 = 5.0;
 	private double x0 = 0.0, f0;
-	private double eps0 = 0.0001;
+	private double eps0 = 0.00000001;
 	private boolean loud = true;
 	public double wynik;
 
@@ -22,11 +22,11 @@ public class IteracjaProsta {
 		Wzor wzor = new Wzor(this.loud);
 		// this.x0 = Math.tan(this.x0) / 2;
 		do {
-			f0 = wzor.Oblicz(this.x0);
+			f0 = wzor.ObliczPrzeksztalcone(this.x0);
 			b1 = Math.abs(this.x0 - f0);
 			if (!this.loud) {
 				System.out.println("Po " + (this.iloscIteracji - i)
-						+ " iteracji \n x= " + this.x0 + " f(x) = " + f0);
+						+ " iteracji  x= " + this.x0 + " f(x) = " + f0);
 			}
 			this.x0 = f0;
 			i--;

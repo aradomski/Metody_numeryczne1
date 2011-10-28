@@ -7,6 +7,19 @@ public class Wzor {
 
 	/**
 	 * @param x
+	 * @return
+	 */
+	public double ObliczPrzeksztalcone(double x) {
+		this.x = x;
+		wynik = Math.sqrt((Math.tan(this.x)) / 2* this.x);
+		if (!this.loud) {
+			System.out.println("wynik = " + wynik);
+		}
+		return wynik;
+	}
+
+	/**
+	 * @param x
 	 */
 
 	public double Oblicz(double x) {
